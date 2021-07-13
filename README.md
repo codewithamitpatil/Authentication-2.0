@@ -159,6 +159,7 @@ what new things are added.
      
       
     //  User Forgot Password Middleware
+        
         User_Forgot_Password:async(req,res,next)=>{
 
 
@@ -252,6 +253,57 @@ what new things are added.
 
 
     }
+  
+  
+  
+  
+  
+  
+    // in verify user verify otp  middle ware i just update forgetstatus true . 
+  
+  
+
+    //  User Verify Otp Middleware  // here i am updating forgetstatus
+  
+  
+      User_Verify_Otp:async(req,res,next)=>{
+
+    const result    = await AuthValidations.VerifyOtp.validateAsync(req.body);  
+
+
+    const Otpresult = otp.validateOTP(result.email, result.otp);
+
+    if(Otpresult)
+    {
+    
+    const UpdateStaus = await UserModel.findOneAndUpdate({email:result.email},{account:'verified',forgetstatus:true},{new:true});// here
+    const AccessToken  = await jwtToken.SignAccessToken(UpdateStaus); 
+
+    const RefreshToken = await jwtToken.SignRefreshToken(UpdateStaus); 
+
+
+    return res.json( {'status':200,'msg':'Your Account Has Been Verified Successfully',AccessToken,RefreshToken});
+
+    }else
+    {
+    return next(new httpErrors.Unauthorized(`The OTP You Entered Is Invalid .Plz Enter The Correct Otp`));
+
+    }
+
+
+
+
+
+    }    
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
      
     ```
