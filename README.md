@@ -3,7 +3,7 @@
 
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="hhttps://amitfoundation.herokuapp.com/">
     <img src="brand.png" alt="Logo" width="280" height="180">
   </a>
 
