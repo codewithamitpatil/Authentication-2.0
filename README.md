@@ -144,6 +144,114 @@ what new things are added.
    
 4. To verify otp follow step 2 .   
 
+<br/><br/>
+
+### Where i done changes and what i do in version 2.0 ?
+
+ > controllers / auth.controller.js
+ 
+    ```
+         add two new modules
+    
+       1. const setTimer = require('set-timer'); // to set timer for 3 min .
+       2. const date     = require('date-and-time');
+     
+     
+      
+    //  User Forgot Password Middleware
+        User_Forgot_Password:async(req,res,next)=>{
 
 
+    const result = await AuthValidations.ForgotPass.validateAsync(req.body);  
 
+    const doesEmailExist = await UserModel.findOne({email:result.email});
+              
+    if(!doesEmailExist)
+    {
+    return next(new httpErrors.Unauthorized(`SORRY WE DID NOT FIND AN ACCOUNT WITH ${result.email} THIS  EMAIL ADDRESS"`));
+    }
+
+
+     // here i am updating status to false
+      const updateStatus = await  UserModel.
+                         findOneAndUpdate({_id:doesEmailExist._id},
+                          {forgetstatus:false
+                          });
+
+
+    otp.startOTPTimer(new Date().getTime());
+   
+    const now = new Date();
+
+    date.format(now, 'ddd, MMM DD YYYY');   
+    
+   
+
+    //     by default status is false;
+    // 1st) false   -> send mail
+
+    // but if user verified in a time
+    //     , then we have to update status true .
+    //     so admin dont need to send mail.
+
+
+    //     but what if he again forget the password
+    //     then status is already been true , so for
+    //     that i do status false at time he request 
+    //     for forgetpassword.
+
+
+    // here i have set timer which automatically itself after 3 min . 
+       
+        now first he check what is the forgetstatus ( by default is false also i update it to false when this route has been called )
+        
+        in this function i just check the status . if it is false then admin will send the email otherwise not
+
+    var timer = setTimer(async function () {
+     
+       const now1 = new Date();
+
+       date.format(now1, 'ddd, MMM DD YYYY'); 
+      
+       if(!doesEmailExist.forgetstatus)
+          {
+
+           const from = "admin";
+
+           const mail = await mailtrap.SendMail(result.email,333,now1 ,from);
+
+           console.log('...... if status.false ......../////');
+
+          }
+
+     console.log("admin mail had been sent");
+
+    }, {
+          timeout: 180000,         // Wait 3 min before call.
+          limit: 1,              // Call callback 1 time.
+          interval: 1000,         // Wait 1 second between calls.
+          onClear: function () {  // Call after timer is cleared.
+          console.log("Cleared!");
+        }
+    });
+
+   
+    // here company send the regular otp first time
+
+    const userOTP = otp.generateOTP(result.email, 5);
+    
+    const from ="company";
+
+    const mail = await mailtrap.SendMail(result.email,userOTP,now,from );
+
+    // console.log(mail);
+  
+    console.log(doesEmailExist.forgetstatus);
+ 
+    res.json({"status":200,"msg":"Check Your Email For The OTP ","email":result.email});
+
+
+    }
+  
+     
+    ```
