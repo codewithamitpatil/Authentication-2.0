@@ -120,8 +120,29 @@ what new things are added.
           "email": "amitwebdev2019@gmail.com"
         }
 
+  > What will be here done ?
+  ```sh   
+     
+     1. First it will send you email from company wich consist of a otp .
+        the otp is valid for 5 min .
+        if you would not verify it within the time 
+        it will expires.
+        
+        if you after 15 min still not verify your forget password ,
+        then admin will send you an email 
+     
+  ```
    
-4. To verify otp follow step 2 
+   #Examples
+   
+  ![Screenshot from 2021-07-14 01-42-10](https://user-images.githubusercontent.com/62344675/125518671-f9d085e1-ee74-441f-a69d-8d90df4c59cc.png)
+
+  ![Screenshot from 2021-07-14 01-42-27](https://user-images.githubusercontent.com/62344675/125518673-fbe98001-7f00-44cb-bb5e-86fcd506a7b3.png)
+
+
+   
+   
+4. To verify otp follow step 2 .   
 
 
 
