@@ -1,0 +1,6 @@
+
+registration success full msg -
+
+Your Account created successfully.
+Please Verify Email To Activate your acount .
+
