@@ -95,11 +95,34 @@ what new things are added.
    
    
    
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+3. Now Your account is successfully created . but what if you forget the password then you make the post request here 
+      >Post Request Endpoint
+     ```sh
+     https://codewithamitauth.herokuapp.com/Auth/user-forgot-password
+     ```
+
+
+   >Request Body
+
+
+       {
+        
+          "email":"amitwebdev2019@gmail.com"
+       }
+
+
+
+   >Response Body
+
+        {
+          "status": 200,
+          "msg": "Check Your Email For The OTP ",
+          "email": "amitwebdev2019@gmail.com"
+        }
+
+   
+4. To verify otp follow step 2 
+
+
+
+
