@@ -25,3 +25,81 @@
 
 This is an example of how you can check the changes from previous version .
 what new things are added.
+
+
+### Here we go
+
+1. First create an new user here , by making a post request . Put your testing email in request body 
+  
+
+    >Post Request Endpoint
+     ```sh
+     https://codewithamitauth.herokuapp.com/Auth/user-signup
+     ```
+
+   
+     >Request Body
+
+
+       {
+          "username":"amitpatil",
+          "email":"amitwebdev2019@gmail.com",
+          "password":"amit1234"
+       }
+
+      
+      
+     >Response Body
+
+
+       {
+          "status": 200,
+          "msg": "Your Account created successfully.Please Verify Email To Activate your acount ",
+          "email": "amitwebdev2019@gmail.com"
+       }
+   
+   
+   
+   <br/><br/>
+
+2. Check your enterd email you got an email from amit patil . The email consists of a otp . took that otp and send to the following endpoint
+      >Post Request Endpoint
+   ```sh
+   https://codewithamitauth.herokuapp.com/Auth/user-verify-otp
+   ```
+
+
+   >Request Body
+
+
+       {
+        
+          "email":"amitwebdev2019@gmail.com",
+           "otp":"6577"
+       }
+
+
+
+    >Response Body
+
+        {
+          "status":        200,
+          "msg":           "Your Account Has Been Verified Successfully",
+          "AccessToken":   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRwYXRpbCIs   
+                           MzRjMyIsImlzcyI6ImFtaXQgcGF0aWwifQ.entoFTODr
+                           hJXKVmV87lKzXFi1-plKlRf828I7IQuqew",
+          "RefreshToken":  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybhMDAxNTUyMzRjMyIsImlzcyI6Im
+                           FtaXQgcGF0aWwifQ.Kjk6ZEjrn3xSy9UCpF2HMbT1JQUfvgBnYR_FS7ZtGow"
+          }
+
+   
+   
+   
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```JS
+   const API_KEY = 'ENTER YOUR API';
+   ```
