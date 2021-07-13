@@ -10,9 +10,10 @@
   <h1 align="center">Authentication Apis 2.0</h1>
 
   <p align="center">
-    Developed By : Amit Gujar Patil
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    Developed By : Amit Gujar Patil
+    <br />  <br />  
+    <a href="https://github.com/codewithamitpatil/Authentication-Rest-Apis-using-MEAN-Stack"><strong>Version 0.1 is here »</strong></a>
     <br />
     <br />
 
